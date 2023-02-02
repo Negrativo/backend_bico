@@ -21,6 +21,8 @@ public class UsuarioCliente {
 
     private String nome;
 
+    private String numeroTelefone;
+
     private String email;
 
     @JsonIgnore
