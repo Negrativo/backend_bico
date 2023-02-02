@@ -17,6 +17,8 @@ public class UsuarioProfissional {
     @Id
     private UUID id;
 
+    private String nomeDiferene;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private UsuarioCliente usuarioCliente;
 
@@ -29,6 +31,7 @@ public class UsuarioProfissional {
     public UsuarioProfissional(UsuarioCliente usuarioCliente) {
         this.id = UUID.randomUUID();
         this.usuarioCliente = usuarioCliente;
+        this.nomeDiferene = "teste";
     }
 
 }
