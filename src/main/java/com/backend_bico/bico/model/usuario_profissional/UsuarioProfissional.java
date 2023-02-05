@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -17,7 +18,7 @@ public class UsuarioProfissional {
     @Id
     private UUID id;
 
-    private String nomeDiferene;
+    private String nome;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private UsuarioCliente usuarioCliente;
@@ -31,7 +32,15 @@ public class UsuarioProfissional {
     public UsuarioProfissional(UsuarioCliente usuarioCliente) {
         this.id = UUID.randomUUID();
         this.usuarioCliente = usuarioCliente;
-        this.nomeDiferene = "teste";
+        this.nome = usuarioCliente.getNome();
     }
 
+
+    public String getEmailUsuario() {
+        return usuarioCliente.getEmail();
+    }
+
+    public LocalDateTime getVerificatedAt() {
+        return usuarioCliente.getVerificatedAt();
+    }
 }
