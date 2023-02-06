@@ -12,7 +12,7 @@ interface CargoRepositoryJpa extends JpaRepository<Cargo, UUID> {
 
     @Query("SELECT cargo.* FROM Cargo cargo " +
             "WHERE cargo.nome = :nome")
-    Optional<Cargo> findByNomeInCategoria(String nome, CategoriaCargoEnum cargoEnum);
+    Optional<Cargo> findByNomeInCategoria(String nome, String cargoEnum);
 
     @Query("SELECT new " + DropdownDTO.PATH + "(cargo.id, cargo.nome) " +
             "FROM Cargo cargo " +

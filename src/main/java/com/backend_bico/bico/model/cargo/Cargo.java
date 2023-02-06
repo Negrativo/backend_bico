@@ -19,9 +19,9 @@ public class Cargo {
     @NonNull
     private final String nome;
 
-    private final CategoriaCargoEnum categoriaCargo;
+    private final String categoriaCargo;
 
-    public Cargo(@NonNull String nome, CategoriaCargoEnum categoriaCargo) {
+    public Cargo(@NonNull String nome, String categoriaCargo) {
         this.id = UUID.randomUUID();
         this.nome = nome;
         this.categoriaCargo = categoriaCargo;

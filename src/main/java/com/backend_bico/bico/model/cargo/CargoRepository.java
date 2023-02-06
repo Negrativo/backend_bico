@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface CargoRepository {
 
-    Optional<Cargo> findByNomeInCategoria(String nomeCargo, CategoriaCargoEnum cargoEnum);
+    Optional<Cargo> findByNomeInCategoria(String nomeCargo, String cargoEnum);
 
     List<DropdownDTO> findAllForDropdown();
 
