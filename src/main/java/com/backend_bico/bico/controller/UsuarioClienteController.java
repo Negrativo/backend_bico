@@ -18,8 +18,8 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/usuario-cliente")
 @RequiredArgsConstructor
-public class usuarioClienteController {
-    
+public class UsuarioClienteController {
+
     private final UsuarioClienteService usuarioClienteService;
 
     @PostMapping
