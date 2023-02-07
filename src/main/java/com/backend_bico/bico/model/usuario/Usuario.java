@@ -1,10 +1,9 @@
-package com.backend_bico.bico.model.usuario_cliente;
+package com.backend_bico.bico.model.usuario;
 
 import com.backend_bico.bico.exceptionHandler.InvalidPasswordException;
-import com.backend_bico.bico.model.usuario_cliente.dto.UsuarioAlterarSenhaDTO;
-import com.backend_bico.bico.model.usuario_cliente.dto.UsuarioAtualizarDTO;
-import com.backend_bico.bico.model.usuario_cliente.dto.UsuarioCriarDTO;
-import com.backend_bico.bico.model.usuario_profissional.UsuarioProfissional;
+import com.backend_bico.bico.model.usuario.dto.UsuarioAlterarSenhaDTO;
+import com.backend_bico.bico.model.usuario.dto.UsuarioAtualizarDTO;
+import com.backend_bico.bico.model.usuario.dto.UsuarioCriarDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,18 +14,16 @@ import lombok.NonNull;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import static com.backend_bico.bico.model.usuario_cliente.UsuarioClienteService.AS_SENHAS_NAO_CONFEREM;
+import static com.backend_bico.bico.model.usuario.UsuarioService.AS_SENHAS_NAO_CONFEREM;
 
 @Entity
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tb_usuario_cliente", schema = "bico")
-public class UsuarioCliente {
+@Table(name = "tb_usuario", schema = "bico")
+public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private UUID id;
 
     @NonNull
@@ -38,26 +35,33 @@ public class UsuarioCliente {
     @JsonIgnore
     private String senha;
 
-    private String numeroTelefone;
+    private String telefone;
+
+    private String descricao;
+
+    private String empregos;
+
+    private String latitude;
+
+    private String longitude;
+
+    private String endereco;
 
     @Column(name = "verificated_at")
     private LocalDateTime verificatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private UsuarioProfissional usuarioProfissional;
-
-    public UsuarioCliente(UsuarioCriarDTO usuarioDTO) {
+    public Usuario(UsuarioCriarDTO usuarioDTO) {
         this.id = UUID.randomUUID();
         this.nome = usuarioDTO.getNome();
         this.email = usuarioDTO.getEmail();
         this.senha = usuarioDTO.getSenha();
-        this.numeroTelefone = usuarioDTO.getNumeroTelefone();
+        this.telefone = usuarioDTO.getTelefone();
     }
 
     public void update(UsuarioAtualizarDTO atualizarUsuarioDTO) {
         this.nome = atualizarUsuarioDTO.getNome();
         this.email = atualizarUsuarioDTO.getEmail();
-        this.numeroTelefone = atualizarUsuarioDTO.getNumeroTelefone();
+        this.telefone = atualizarUsuarioDTO.getTelefone();
     }
 
     public void updateSenha(String senha) {

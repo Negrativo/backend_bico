@@ -1,4 +1,4 @@
-package com.backend_bico.bico.util;
+package com.backend_bico.bico.exceptionHandler.util;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

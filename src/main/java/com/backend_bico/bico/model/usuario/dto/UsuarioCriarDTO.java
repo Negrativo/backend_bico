@@ -1,8 +1,7 @@
-package com.backend_bico.bico.model.usuario_cliente.dto;
+package com.backend_bico.bico.model.usuario.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsuarioAtualizarDTO {
+public class UsuarioCriarDTO {
 
     @NotBlank
     private String nome;
@@ -19,7 +18,9 @@ public class UsuarioAtualizarDTO {
     @NotBlank
     private String email;
 
-    @NotNull
-    private String numeroTelefone;
+    @NotBlank
+    private String senha;
+
+    private String telefone;
 
 }

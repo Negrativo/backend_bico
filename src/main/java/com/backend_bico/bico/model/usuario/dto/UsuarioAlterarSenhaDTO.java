@@ -1,4 +1,4 @@
-package com.backend_bico.bico.model.usuario_cliente.dto;
+package com.backend_bico.bico.model.usuario.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
