@@ -10,9 +10,16 @@ import java.util.UUID;
 
 interface CargoRepositoryJpa extends JpaRepository<Cargo, UUID> {
 
-    @Query("SELECT cargo.* FROM Cargo cargo " +
+    @Query("SELECT cargo " +
+            "FROM Cargo cargo " +
             "WHERE cargo.nome = :nome")
-    Optional<Cargo> findByNomeInCategoria(String nome, CategoriaCargoEnum cargoEnum);
+    Optional<Cargo> findByNome(String nome);
+
+    @Query("SELECT cargo " +
+            "FROM Cargo cargo " +
+            "WHERE cargo.nome = :nome " +
+            "AND cargo.categoria = :categoria")
+    Optional<Cargo> findByNomeAndCategoria(String nome, String categoria);
 
     @Query("SELECT new " + DropdownDTO.PATH + "(cargo.id, cargo.nome) " +
             "FROM Cargo cargo " +

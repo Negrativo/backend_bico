@@ -19,12 +19,12 @@ public class Cargo {
     @NonNull
     private final String nome;
 
-    private final CategoriaCargoEnum categoriaCargo;
+    private final String categoria;
 
-    public Cargo(@NonNull String nome, CategoriaCargoEnum categoriaCargo) {
+    public Cargo(@NonNull String nome, String categoria) {
         this.id = UUID.randomUUID();
         this.nome = nome;
-        this.categoriaCargo = categoriaCargo;
+        this.categoria = categoria;
     }
 
 }

@@ -14,8 +14,13 @@ class CargoRepositoryImpl implements CargoRepository {
     private final CargoRepositoryJpa cargoRepositoryJpa;
 
     @Override
-    public Optional<Cargo> findByNomeInCategoria(String nomeCargo, CategoriaCargoEnum cargoEnum) {
-        return cargoRepositoryJpa.findByNomeInCategoria(nomeCargo, cargoEnum);
+    public Optional<Cargo> findByNome(String nomeCargo) {
+        return cargoRepositoryJpa.findByNome(nomeCargo);
+    }
+
+    @Override
+    public Optional<Cargo> findByNomeAndCategoria(String nomeCargo, String categoria) {
+        return cargoRepositoryJpa.findByNomeAndCategoria(nomeCargo, categoria);
     }
 
     @Override
