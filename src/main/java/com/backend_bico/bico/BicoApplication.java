@@ -8,10 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableCaching
-@SpringBootApplication
-@ComponentScan(basePackages = {"br.com.myorg"})
-@EnableJpaRepositories(basePackages = {"br.com.myorg"})
-@EntityScan(basePackages = {"br.com.myorg"})
+@SpringBootApplication(scanBasePackages = {"com", "br.com.myorg"})
+@ComponentScan(basePackages = {"com.backend_bico.bico"})
+@EnableJpaRepositories(basePackages = {"com.backend_bico.bico"})
+@EntityScan(basePackages = {"com.backend_bico.bico"})
 public class BicoApplication {
 
 	public static void main(String[] args) {
