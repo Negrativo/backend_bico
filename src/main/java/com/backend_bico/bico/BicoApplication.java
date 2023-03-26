@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableCaching
-@SpringBootApplication(scanBasePackages = {"com", "br.com.myorg"})
+@SpringBootApplication(scanBasePackages = { "com", "com.backend_bico" })
 @ComponentScan(basePackages = {"com.backend_bico.bico"})
 @EnableJpaRepositories(basePackages = {"com.backend_bico.bico"})
 @EntityScan(basePackages = {"com.backend_bico.bico"})

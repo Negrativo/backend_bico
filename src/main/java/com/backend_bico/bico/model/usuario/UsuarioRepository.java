@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
+
 public interface UsuarioRepository {
 
     Usuario save(Usuario usuario);
@@ -18,5 +20,6 @@ public interface UsuarioRepository {
 
     void deleteById(UUID id);
 
+    UsuarioByIdDTO findByEmailAndSenha(String email, String senha);
 
 }

@@ -11,10 +11,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import static com.backend_bico.bico.service.UsuarioService.AS_SENHAS_NAO_CONFEREM;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
-
-import static com.backend_bico.bico.model.usuario.UsuarioService.AS_SENHAS_NAO_CONFEREM;
 
 @Entity
 @Getter

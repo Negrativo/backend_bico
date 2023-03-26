@@ -4,6 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -49,4 +51,11 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
         usuarioRepositoryJpa.delete(usuarioEncontrado);
     }
 
-}
+    @Override
+    public UsuarioByIdDTO findByEmailAndSenha(String email, String senha) {
+      Optional<Usuario> usuarioOptional = usuarioRepositoryJpa.findByEmailAndSenha(email, senha);
+      Usuario usuario = usuarioOptional.orElseThrow(() -> new EntityNotFoundException(USUARIO_NAO_ENCONTRADO));
+      return new UsuarioByIdDTO(usuario);
+    }
+
+  }
