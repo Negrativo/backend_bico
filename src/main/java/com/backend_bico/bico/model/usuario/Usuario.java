@@ -14,6 +14,7 @@ import lombok.NonNull;
 import static com.backend_bico.bico.service.UsuarioService.AS_SENHAS_NAO_CONFEREM;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.UUID;
 
 @Entity
@@ -37,9 +38,7 @@ public class Usuario {
 
     private String telefone;
 
-    private String descricao;
-
-    private String empregos;
+    private ArrayList<String> profissoes;
 
     private String latitude;
 
@@ -56,6 +55,10 @@ public class Usuario {
         this.email = usuarioDTO.getEmail();
         this.senha = usuarioDTO.getSenha();
         this.telefone = usuarioDTO.getTelefone();
+        this.latitude = usuarioDTO.getLatitude();
+        this.longitude = usuarioDTO.getLongitude();
+        this.endereco = usuarioDTO.getEndereco();
+        this.profissoes = usuarioDTO.getProfissoes();
     }
 
     public void update(UsuarioAtualizarDTO atualizarUsuarioDTO) {

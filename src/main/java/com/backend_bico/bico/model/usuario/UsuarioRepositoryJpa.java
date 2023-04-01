@@ -9,9 +9,14 @@ import java.util.UUID;
 interface UsuarioRepositoryJpa extends JpaRepository<Usuario, UUID> {
 
   @Query("SELECT usuario " +
-      "  FROM Usuario usuario " +
-      " WHERE usuario.email = :email " +
-      "   AND usuario.senha = :senha")
+      "FROM Usuario usuario " +
+      "WHERE usuario.email = :email " +
+      "AND usuario.senha = :senha")
   Optional<Usuario> findByEmailAndSenha(String email, String senha);
+
+  @Query("SELECT usuario " +
+      "FROM Usuario usuario " +
+      "WHERE usuario.email = :email")
+  Optional<Usuario> findByEmail(String email);
 
 }

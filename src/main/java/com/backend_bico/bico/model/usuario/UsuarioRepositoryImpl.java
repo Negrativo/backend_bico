@@ -58,4 +58,9 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
       return new UsuarioByIdDTO(usuario);
     }
 
+    @Override
+    public Optional<Usuario> verificarUsuarioExistente(String email) {
+      return usuarioRepositoryJpa.findByEmail(email);
+    }
+
   }
