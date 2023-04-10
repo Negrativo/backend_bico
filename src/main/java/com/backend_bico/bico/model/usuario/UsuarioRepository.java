@@ -25,4 +25,6 @@ public interface UsuarioRepository {
 
     Optional<Usuario> verificarUsuarioExistente(String email);
 
+    List<Usuario> findByServico(String servico);
+
 }

@@ -63,4 +63,9 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
       return usuarioRepositoryJpa.findByEmail(email);
     }
 
+    @Override
+    public List<Usuario> findByServico(String servico) {
+      return usuarioRepositoryJpa.findByServico(servico);
+    }
+
   }

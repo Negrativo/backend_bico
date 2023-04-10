@@ -6,24 +6,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend_bico.bico.model.dtos.UsuarioEmailSenhaDTO;
-import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
-import com.backend_bico.bico.service.LoginService;
+import com.backend_bico.bico.model.dtos.SolicitacaoDTO;
+import com.backend_bico.bico.service.SolicitacaoService;
 
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/inicio")
-@RequiredArgsConstructor
+@RequestMapping("/solicitacao")
+@AllArgsConstructor
 public class SolicitacaoServicoController {
 
-  private LoginService loginService;
+  private SolicitacaoService solicitacaoService;
 
-  // @PostMapping("/login")
-  // public ResponseEntity<UsuarioByIdDTO> login(@RequestBody UsuarioEmailSenhaDTO
-  // loginDTO) {
-  // UsuarioByIdDTO usuarioByIdDTO = loginService.login(loginDTO);
-  // return ResponseEntity.ok(usuarioByIdDTO);
-  // }
+  @PostMapping("/solicitar")
+  public ResponseEntity<String> solicitar(@RequestBody SolicitacaoDTO solicitacaoDTO) {
+    solicitacaoService.solicitar(solicitacaoDTO);
+    return ResponseEntity.ok("Solicitado");
+  }
 
 }
