@@ -18,3 +18,10 @@ CREATE TABLE bico.tb_cargo (
 	categoriaCargo varchar(50) NOT NULL,
 	CONSTRAINT tb_cargo_pkey PRIMARY KEY (id)
 );
+
+CREATE TABLE bico.tb_usuarios_servicos (
+  id uuid PRIMARY KEY,
+  usuario_id uuid REFERENCES tb_usuario(id),
+  servico_id uuid REFERENCES tb_cargo(id),
+  UNIQUE(usuario_id, servico_id)
+);
