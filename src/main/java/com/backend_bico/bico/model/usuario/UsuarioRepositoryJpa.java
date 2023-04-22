@@ -22,7 +22,7 @@ interface UsuarioRepositoryJpa extends JpaRepository<Usuario, UUID> {
 
   @Query("SELECT usuario " +
       "FROM Usuario usuario " +
-      "WHERE usuario.profissoes = :servico")
+      "WHERE usuario.servicos = :servico")
   List<Usuario> findByServico(String servico);
 
 }

@@ -12,11 +12,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @AllArgsConstructor
-@Table(name = "tb_usuario_servico", schema = "bico")
+@NoArgsConstructor
+@Table(name = "tb_usuario_servicos", schema = "bico")
 public class UsuarioServico {
 
   @Id
@@ -24,11 +26,11 @@ public class UsuarioServico {
   private Long id;
 
   @ManyToOne
-  @JoinColumn(name = "id_usuario")
+  @JoinColumn(name = "usuario_id")
   private Usuario usuario;
 
   @ManyToOne
-  @JoinColumn(name = "id_servico")
+  @JoinColumn(name = "servico_id")
   private Servico servico;
 
 }

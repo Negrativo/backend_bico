@@ -1,17 +1,15 @@
 package com.backend_bico.bico.model.usuario.dto;
 
-import java.util.ArrayList;
-
 import com.backend_bico.bico.model.usuario.Usuario;
-
+import com.backend_bico.bico.model.usuario_servico.UsuarioServico;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioCriarDTO {
 
@@ -33,17 +31,17 @@ public class UsuarioCriarDTO {
 
     private String endereco;
 
-    private ArrayList<String> profissoes;
+    private List<UsuarioServico> servicos;
 
     public UsuarioCriarDTO(Usuario usuario) {
-      this.nome = usuario.getNome();
-      this.email = usuario.getEmail();
-      this.senha = usuario.getSenha();
-      this.telefone = usuario.getTelefone();
-      this.latitude = usuario.getLatitude();
-      this.longitude = usuario.getLongitude();
-      this.endereco = usuario.getEndereco();
-      this.profissoes = usuario.getProfissoes();
+        this.nome = usuario.getNome();
+        this.email = usuario.getEmail();
+        this.senha = usuario.getSenha();
+        this.telefone = usuario.getTelefone();
+        this.latitude = usuario.getLatitude();
+        this.longitude = usuario.getLongitude();
+        this.endereco = usuario.getEndereco();
+        this.servicos = usuario.getServicos();
     }
 
 }

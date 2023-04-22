@@ -12,16 +12,16 @@ CREATE TABLE bico.tb_usuario (
 	CONSTRAINT tb_usuario_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE bico.tb_cargo (
+CREATE TABLE bico.tb_servico (
 	id uuid NOT NULL,
-  nome varchar(50) NOT NULL,
-	categoriaCargo varchar(50) NOT NULL,
-	CONSTRAINT tb_cargo_pkey PRIMARY KEY (id)
+    nome varchar(50) NOT NULL,
+	categoria varchar(50) NOT NULL,
+	CONSTRAINT tb_servico_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE bico.tb_usuarios_servicos (
+CREATE TABLE bico.tb_usuario_servicos (
   id uuid PRIMARY KEY,
   usuario_id uuid REFERENCES tb_usuario(id),
-  servico_id uuid REFERENCES tb_cargo(id),
+  servico_id uuid REFERENCES tb_servico(id),
   UNIQUE(usuario_id, servico_id)
 );

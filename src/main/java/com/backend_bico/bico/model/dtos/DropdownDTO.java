@@ -1,6 +1,6 @@
 package com.backend_bico.bico.model.dtos;
 
-import com.backend_bico.bico.model.cargo.Cargo;
+import com.backend_bico.bico.model.cargo.Servico;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
@@ -13,9 +13,9 @@ public class DropdownDTO {
     protected UUID id;
     protected String nome;
 
-    public DropdownDTO(Cargo cargo) {
-        this.id = cargo.getId();
-        this.nome = cargo.getNome();
+    public DropdownDTO(Servico servico) {
+        this.id = servico.getId();
+        this.nome = servico.getNome();
     }
 
 }

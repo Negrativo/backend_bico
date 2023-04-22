@@ -5,11 +5,11 @@ import com.backend_bico.bico.model.dtos.DropdownDTO;
 import java.util.List;
 import java.util.Optional;
 
-public interface CargoRepository {
+public interface ServicoRepository {
 
-    Optional<Cargo> findByNome(String nomeCargo);
+    Optional<Servico> findByNome(String nomeCargo);
 
-    Optional<Cargo> findByNomeAndCategoria(String nomeCargo, String categoria);
+    Optional<Servico> findByNomeAndCategoria(String nomeCargo, String categoria);
 
     List<DropdownDTO> findAllForDropdown();
 

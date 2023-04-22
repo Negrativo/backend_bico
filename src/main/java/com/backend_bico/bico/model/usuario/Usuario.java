@@ -4,23 +4,23 @@ import com.backend_bico.bico.exceptionHandler.InvalidPasswordException;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAlterarSenhaDTO;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAtualizarDTO;
 import com.backend_bico.bico.model.usuario.dto.UsuarioCriarDTO;
+import com.backend_bico.bico.model.usuario_servico.UsuarioServico;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import static com.backend_bico.bico.service.UsuarioService.AS_SENHAS_NAO_CONFEREM;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
+import static com.backend_bico.bico.service.UsuarioService.AS_SENHAS_NAO_CONFEREM;
 
 @Entity
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Table(name = "tb_usuario", schema = "bico")
 public class Usuario {
 
@@ -38,7 +38,8 @@ public class Usuario {
 
     private String telefone;
 
-    private ArrayList<String> profissoes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<UsuarioServico> servicos;
 
     private String latitude;
 
@@ -58,7 +59,7 @@ public class Usuario {
         this.latitude = usuarioDTO.getLatitude();
         this.longitude = usuarioDTO.getLongitude();
         this.endereco = usuarioDTO.getEndereco();
-        this.profissoes = usuarioDTO.getProfissoes();
+        this.servicos = usuarioDTO.getServicos();
     }
 
     public void update(UsuarioAtualizarDTO atualizarUsuarioDTO) {
@@ -79,4 +80,9 @@ public class Usuario {
         }
     }
 
+    public List<String> getNomeProfissoes() {
+        return servicos.stream()
+                .map(usuarioServico -> usuarioServico.getServico().getNome())
+                .collect(Collectors.toList());
+    }
 }
