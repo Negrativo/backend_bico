@@ -1,6 +1,7 @@
 package com.backend_bico.bico.model.usuario;
 
 import com.backend_bico.bico.exceptionHandler.InvalidPasswordException;
+import com.backend_bico.bico.model.Coordenadas;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAlterarSenhaDTO;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAtualizarDTO;
 import com.backend_bico.bico.model.usuario.dto.UsuarioCriarDTO;
@@ -83,5 +84,9 @@ public class Usuario {
 
     public void setUsuarioServico(UsuarioServico usuarioServico) {
         this.servicos.add(usuarioServico);
+    }
+
+    public Coordenadas getCoordenadas() {
+        return new Coordenadas(latitude, longitude);
     }
 }
