@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -59,7 +60,7 @@ public class Usuario {
         this.latitude = usuarioDTO.getLatitude();
         this.longitude = usuarioDTO.getLongitude();
         this.endereco = usuarioDTO.getEndereco();
-        this.servicos = usuarioDTO.getServicos();
+        this.servicos = new ArrayList<>();
     }
 
     public void update(UsuarioAtualizarDTO atualizarUsuarioDTO) {
@@ -80,9 +81,7 @@ public class Usuario {
         }
     }
 
-    public List<String> getNomeProfissoes() {
-        return servicos.stream()
-                .map(usuarioServico -> usuarioServico.getServico().getNome())
-                .collect(Collectors.toList());
+    public void setUsuarioServico(UsuarioServico usuarioServico) {
+        this.servicos.add(usuarioServico);
     }
 }

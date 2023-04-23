@@ -1,6 +1,5 @@
 package com.backend_bico.bico.model.cargo;
 
-import com.backend_bico.bico.model.dtos.DropdownDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

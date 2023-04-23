@@ -31,8 +31,6 @@ public class UsuarioCriarDTO {
 
     private String endereco;
 
-    private List<UsuarioServico> servicos;
-
     public UsuarioCriarDTO(Usuario usuario) {
         this.nome = usuario.getNome();
         this.email = usuario.getEmail();
@@ -41,7 +39,6 @@ public class UsuarioCriarDTO {
         this.latitude = usuario.getLatitude();
         this.longitude = usuario.getLongitude();
         this.endereco = usuario.getEndereco();
-        this.servicos = usuario.getServicos();
     }
 
 }

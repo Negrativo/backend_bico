@@ -1,17 +1,17 @@
 package com.backend_bico.bico.model.usuario;
 
+import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
-
 public interface UsuarioRepository {
 
     Usuario save(Usuario usuario);
 
-    List<Usuario> saveAll(Collection<Usuario> usuarios);
+    void saveAll(Collection<Usuario> usuarios);
 
     Usuario findById(UUID id);
 
@@ -26,5 +26,7 @@ public interface UsuarioRepository {
     Optional<Usuario> verificarUsuarioExistente(String email);
 
     List<Usuario> findByServico(String servico);
+
+    List<String> nomeServicosByUsuarioId(UUID id);
 
 }

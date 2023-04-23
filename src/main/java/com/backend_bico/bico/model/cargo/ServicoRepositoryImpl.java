@@ -4,6 +4,7 @@ import com.backend_bico.bico.model.dtos.DropdownDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,4 +33,13 @@ class ServicoRepositoryImpl implements ServicoRepository {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Servico> findAll() {
+        return servicoRepositoryJpa.findAll();
+    }
+
+    @Override
+    public List<Servico> saveAll(Collection<Servico> servicos) {
+        return servicoRepositoryJpa.saveAll(servicos);
+    }
 }

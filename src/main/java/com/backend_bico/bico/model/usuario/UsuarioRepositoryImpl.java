@@ -1,15 +1,16 @@
 package com.backend_bico.bico.model.usuario;
 
+import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
+import com.backend_bico.bico.model.usuario_servico.UsuarioServico;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -25,8 +26,8 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public List<Usuario> saveAll(Collection<Usuario> usuarios) {
-        return usuarioRepositoryJpa.saveAll(usuarios);
+    public void saveAll(Collection<Usuario> usuarios) {
+        usuarioRepositoryJpa.saveAll(usuarios);
     }
 
     @Override
@@ -53,19 +54,28 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
 
     @Override
     public UsuarioByIdDTO findByEmailAndSenha(String email, String senha) {
-      Optional<Usuario> usuarioOptional = usuarioRepositoryJpa.findByEmailAndSenha(email, senha);
-      Usuario usuario = usuarioOptional.orElseThrow(() -> new EntityNotFoundException(USUARIO_NAO_ENCONTRADO));
-      return new UsuarioByIdDTO(usuario);
+        Optional<Usuario> usuarioOptional = usuarioRepositoryJpa.findByEmailAndSenha(email, senha);
+        Usuario usuario = usuarioOptional.orElseThrow(() -> new EntityNotFoundException(USUARIO_NAO_ENCONTRADO));
+        return new UsuarioByIdDTO(usuario);
     }
 
     @Override
     public Optional<Usuario> verificarUsuarioExistente(String email) {
-      return usuarioRepositoryJpa.findByEmail(email);
+        return usuarioRepositoryJpa.findByEmail(email);
     }
 
     @Override
     public List<Usuario> findByServico(String servico) {
-      return usuarioRepositoryJpa.findByServico(servico);
+        return usuarioRepositoryJpa.findByServico(servico);
     }
 
-  }
+    @Override
+    public List<String> nomeServicosByUsuarioId(UUID id) {
+        List<UsuarioServico> usuarioServicos = usuarioRepositoryJpa.nomeServicosByUsuarioId(id);
+        return usuarioServicos.stream()
+                .map(usuarioServico -> usuarioServico.getServico().getNome())
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+}
