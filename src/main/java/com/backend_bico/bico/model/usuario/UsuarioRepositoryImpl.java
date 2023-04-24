@@ -3,6 +3,7 @@ package com.backend_bico.bico.model.usuario;
 import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
 import com.backend_bico.bico.model.usuario_servico.UsuarioServico;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
+@Transactional
 @RequiredArgsConstructor
 class UsuarioRepositoryImpl implements UsuarioRepository {
 

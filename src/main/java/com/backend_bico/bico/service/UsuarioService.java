@@ -1,5 +1,7 @@
 package com.backend_bico.bico.service;
 
+import com.backend_bico.bico.model.cargo.Servico;
+import com.backend_bico.bico.model.cargo.ServicoRepository;
 import com.backend_bico.bico.model.usuario.Usuario;
 import com.backend_bico.bico.model.usuario.UsuarioRepository;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAlterarSenhaDTO;
@@ -18,44 +20,50 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UsuarioService {
 
-  public static final String AS_SENHAS_NAO_CONFEREM = "AS SENHAS NÃO CONFEREM.";
+    public static final String AS_SENHAS_NAO_CONFEREM = "AS SENHAS NÃO CONFEREM.";
 
-  private final UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final ServicoRepository servicoRepository;
 
-  @Transactional
-  public UsuarioCriarDTO save(UsuarioCriarDTO usuarioDTO) {
-    Usuario usuario = new Usuario(usuarioDTO);
-    Usuario usuarioCriado = usuarioRepository.save(usuario);
-    return new UsuarioCriarDTO(usuarioCriado);
-  }
+    @Transactional
+    public Usuario save(UsuarioCriarDTO usuarioDTO) {
+        Usuario usuario = new Usuario(usuarioDTO);
+        return usuarioRepository.save(usuario);
+    }
 
-  public List<Usuario> getAll() {
-    return usuarioRepository.findAll();
-  }
+    public List<Usuario> getAll() {
+        return usuarioRepository.findAll();
+    }
 
-  public UsuarioByIdDTO findById(UUID usuarioId) {
-    Usuario usuario = usuarioRepository.findById(usuarioId);
-    return new UsuarioByIdDTO(usuario);
-  }
+    public UsuarioByIdDTO findById(UUID usuarioId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId);
+        return new UsuarioByIdDTO(usuario);
+    }
 
-  @Transactional
-  public Usuario updateById(UUID usuarioId, UsuarioAtualizarDTO usuarioDTO) {
-    Usuario usuario = usuarioRepository.findById(usuarioId);
-    usuario.update(usuarioDTO);
-    return usuarioRepository.save(usuario);
-  }
+    @Transactional
+    public Usuario updateById(UUID usuarioId, UsuarioAtualizarDTO usuarioDTO) {
+        Usuario usuario = usuarioRepository.findById(usuarioId);
 
-  @Transactional
-  public void updateSenha(UUID usuarioId, UsuarioAlterarSenhaDTO usuarioAlterarSenhaDTO) {
-    Usuario usuario = usuarioRepository.findById(usuarioId);
-    usuario.validarSenhas(usuarioAlterarSenhaDTO);
-    usuario.updateSenha(usuarioAlterarSenhaDTO.getNovaSenha());
-    usuarioRepository.save(usuario);
-  }
+        List<Servico> servicos = servicoRepository.findAll();
+        List<Servico> servicosSelecionado = servicos.stream()
+                .filter(servico -> usuarioDTO.getProfissoes().contains(servico.getNome()))
+                .toList();
 
-  @Transactional
-  public void deleteById(UUID usuarioId) {
-    usuarioRepository.deleteById(usuarioId);
-  }
+        usuario.update(usuarioDTO, servicosSelecionado);
+        return usuarioRepository.save(usuario);
+    }
+
+    @Transactional
+    public void updateSenha(UUID usuarioId, UsuarioAlterarSenhaDTO usuarioAlterarSenhaDTO) {
+        Usuario usuario = usuarioRepository.findById(usuarioId);
+        usuario.validarSenhas(usuarioAlterarSenhaDTO);
+        usuario.updateSenha(usuarioAlterarSenhaDTO.getNovaSenha());
+        usuarioRepository.save(usuario);
+    }
+
+    @Transactional
+    public void deleteById(UUID usuarioId) {
+        usuarioRepository.deleteById(usuarioId);
+    }
 
 }

@@ -9,6 +9,7 @@ import com.backend_bico.bico.service.UsuarioService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,9 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<UsuarioCriarDTO> save(@RequestBody @Valid UsuarioCriarDTO usuarioDTO) {
-      UsuarioCriarDTO usuario = usuarioService.save(usuarioDTO);
-      return ResponseEntity.status(HttpStatus.CREATED).body(usuario);
+    public ResponseEntity<UUID> save(@RequestBody @Valid UsuarioCriarDTO usuarioDTO) {
+        Usuario usuario = usuarioService.save(usuarioDTO);
+      return ResponseEntity.status(HttpStatus.CREATED).body(usuario.getId());
     }
 
     @GetMapping("/listar")
@@ -46,7 +47,7 @@ public class UsuarioController {
     }
 
     @PutMapping("/atualizar-senha/{usuarioId}")
-    public void updateSenha(@PathVariable UUID usuarioId, @Valid @RequestBody UsuarioAlterarSenhaDTO usuarioAlterarSenhaDTO) {
+    public void updateSenha(@Param("usuarioId") UUID usuarioId, @Valid @RequestBody UsuarioAlterarSenhaDTO usuarioAlterarSenhaDTO) {
       usuarioService.updateSenha(usuarioId, usuarioAlterarSenhaDTO);
     }
 

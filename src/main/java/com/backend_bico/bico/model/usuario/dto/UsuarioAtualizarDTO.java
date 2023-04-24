@@ -1,25 +1,22 @@
 package com.backend_bico.bico.model.usuario.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioAtualizarDTO {
 
-    @NotBlank
-    private String nome;
+    private String latitude;
 
-    @Email
-    @NotBlank
-    private String email;
+    private String longitude;
 
-    @NotNull
-    private String telefone;
+    private String endereco;
+
+    private List<String> profissoes;
 
 }

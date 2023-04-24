@@ -2,6 +2,7 @@ package com.backend_bico.bico.model.usuario;
 
 import com.backend_bico.bico.exceptionHandler.InvalidPasswordException;
 import com.backend_bico.bico.model.Coordenadas;
+import com.backend_bico.bico.model.cargo.Servico;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAlterarSenhaDTO;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAtualizarDTO;
 import com.backend_bico.bico.model.usuario.dto.UsuarioCriarDTO;
@@ -11,10 +12,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,6 +25,7 @@ import static com.backend_bico.bico.service.UsuarioService.AS_SENHAS_NAO_CONFERE
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor(force = true)
 @Table(name = "tb_usuario", schema = "bico")
 public class Usuario {
@@ -58,16 +62,17 @@ public class Usuario {
         this.email = usuarioDTO.getEmail();
         this.senha = usuarioDTO.getSenha();
         this.telefone = usuarioDTO.getTelefone();
-        this.latitude = usuarioDTO.getLatitude();
-        this.longitude = usuarioDTO.getLongitude();
-        this.endereco = usuarioDTO.getEndereco();
         this.servicos = new ArrayList<>();
     }
 
-    public void update(UsuarioAtualizarDTO atualizarUsuarioDTO) {
-        this.nome = atualizarUsuarioDTO.getNome();
-        this.email = atualizarUsuarioDTO.getEmail();
-        this.telefone = atualizarUsuarioDTO.getTelefone();
+    public void update(UsuarioAtualizarDTO atualizarUsuarioDTO, List<Servico> servicosSelecionado) {
+        setLatitude(atualizarUsuarioDTO.getLatitude());
+        setLongitude(atualizarUsuarioDTO.getLongitude());
+        setEndereco(atualizarUsuarioDTO.getEndereco());
+        servicosSelecionado
+                .forEach(profissao -> {
+                    setUsuarioServico(new UsuarioServico(this, profissao));
+                });
     }
 
     public void updateSenha(String senha) {
