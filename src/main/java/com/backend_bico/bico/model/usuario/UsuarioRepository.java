@@ -1,6 +1,6 @@
 package com.backend_bico.bico.model.usuario;
 
-import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
+import com.backend_bico.bico.model.usuario.dto.UsuarioDTO;
 
 import java.util.Collection;
 import java.util.List;
@@ -21,7 +21,7 @@ public interface UsuarioRepository {
 
     void deleteById(UUID id);
 
-    UsuarioByIdDTO findByEmailAndSenha(String email, String senha);
+    UsuarioDTO findByEmailAndSenha(String email, String senha);
 
     Optional<Usuario> verificarUsuarioExistente(String email);
 

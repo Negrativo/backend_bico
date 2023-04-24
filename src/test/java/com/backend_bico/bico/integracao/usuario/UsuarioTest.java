@@ -45,7 +45,7 @@ public class UsuarioTest extends BicoApplicationTests {
         programadorJava = new Servico("programador Java", "tecnologia");
         this.servicos = servicoRepository.saveAll(List.of(computacaoServ, programadorJava, programadorWeb));
 
-        UsuarioCriarDTO usuarioCriarDTO = new UsuarioCriarDTO("lucas", "teste", "teste", "123", "123", "teste", "123");
+        UsuarioCriarDTO usuarioCriarDTO = new UsuarioCriarDTO("lucas", "teste", "teste", "123");
         Usuario usuario = new Usuario(usuarioCriarDTO);
         usuarioRepository.save(usuario);
         UsuarioServico usuarioServico = new UsuarioServico(usuario, computacaoServ);
@@ -64,9 +64,9 @@ public class UsuarioTest extends BicoApplicationTests {
         programadorJava = new Servico("programador Java", "tecnologia");
         this.servicos = servicoRepository.saveAll(List.of(computacaoServ, programadorJava, programadorWeb));
 
-        UsuarioCriarDTO usuarioLucasCriarDTO = new UsuarioCriarDTO("Lucas", "teste", "teste", "123", "123", "teste", "123");
-        UsuarioCriarDTO usuarioJonasCriarDTO = new UsuarioCriarDTO("Jonas", "teste", "teste", "123", "123", "teste", "123");
-        UsuarioCriarDTO usuarioGabrielCriarDTO = new UsuarioCriarDTO("Gabriel", "teste", "teste", "123", "123", "teste", "123");
+        UsuarioCriarDTO usuarioLucasCriarDTO = new UsuarioCriarDTO("Lucas", "teste", "teste", "123");
+        UsuarioCriarDTO usuarioJonasCriarDTO = new UsuarioCriarDTO("Jonas", "teste", "teste", "123");
+        UsuarioCriarDTO usuarioGabrielCriarDTO = new UsuarioCriarDTO("Gabriel", "teste", "teste", "123");
 
         Usuario usuarioLucas = new Usuario(usuarioLucasCriarDTO);
         Usuario usuarioJonas = new Usuario(usuarioJonasCriarDTO);
@@ -100,7 +100,7 @@ public class UsuarioTest extends BicoApplicationTests {
         programadorJava = new Servico("programador Java", "tecnologia");
         this.servicos = servicoRepository.saveAll(List.of(computacaoServ, programadorJava, programadorWeb));
 
-        UsuarioCriarDTO usuarioLucasCriarDTO = new UsuarioCriarDTO("Lucas", "teste", "teste", "123", "123", "teste", "123");
+        UsuarioCriarDTO usuarioLucasCriarDTO = new UsuarioCriarDTO("Lucas", "teste", "teste", "123");
 
         Usuario usuarioLucas = new Usuario(usuarioLucasCriarDTO);
 

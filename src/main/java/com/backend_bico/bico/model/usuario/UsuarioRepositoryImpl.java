@@ -1,6 +1,6 @@
 package com.backend_bico.bico.model.usuario;
 
-import com.backend_bico.bico.model.usuario.dto.UsuarioByIdDTO;
+import com.backend_bico.bico.model.usuario.dto.UsuarioDTO;
 import com.backend_bico.bico.model.usuario_servico.UsuarioServico;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -55,10 +55,10 @@ class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public UsuarioByIdDTO findByEmailAndSenha(String email, String senha) {
+    public UsuarioDTO findByEmailAndSenha(String email, String senha) {
         Optional<Usuario> usuarioOptional = usuarioRepositoryJpa.findByEmailAndSenha(email, senha);
         Usuario usuario = usuarioOptional.orElseThrow(() -> new EntityNotFoundException(USUARIO_NAO_ENCONTRADO));
-        return new UsuarioByIdDTO(usuario);
+        return new UsuarioDTO(usuario);
     }
 
     @Override
