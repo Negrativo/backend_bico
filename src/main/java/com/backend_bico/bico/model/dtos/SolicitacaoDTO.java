@@ -1,16 +1,17 @@
 package com.backend_bico.bico.model.dtos;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
+import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
 public class SolicitacaoDTO {
 
+  private UUID usuarioSolicitante;
   private String servico;
-  private String diaSolicitado;
+  private String diaSelecionado;
   private String horarioSolicitado;
   private String observacao;
   private String latitude;

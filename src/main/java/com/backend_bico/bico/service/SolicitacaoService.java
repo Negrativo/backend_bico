@@ -1,14 +1,22 @@
 package com.backend_bico.bico.service;
 
 import com.backend_bico.bico.model.Coordenadas;
+import com.backend_bico.bico.model.cargo.Servico;
+import com.backend_bico.bico.model.cargo.ServicoRepository;
 import com.backend_bico.bico.model.dtos.SolicitacaoDTO;
+import com.backend_bico.bico.model.servico_solicitado.ServicoSolicitado;
+import com.backend_bico.bico.model.servico_solicitado.ServicoSolicitadoRepository;
 import com.backend_bico.bico.model.usuario.Usuario;
 import com.backend_bico.bico.model.usuario.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -19,22 +27,25 @@ public class SolicitacaoService {
     private static final double RAIO_DA_TERRA = 6371000;
 
     private final UsuarioRepository usuarioRepository;
+    private final ServicoRepository servicoRepository;
+    private final ServicoSolicitadoRepository servicoSolicitadoRepository;
 
     public void solicitar(SolicitacaoDTO solicitacaoDTO) {
-        String servico = solicitacaoDTO.getServico();
-        String diaSolicitado = solicitacaoDTO.getDiaSolicitado();
+        UUID usuarioSolicitanteId = solicitacaoDTO.getUsuarioSolicitante();
+        String nomeServico = solicitacaoDTO.getServico();
+        String diaSolicitado = solicitacaoDTO.getDiaSelecionado();
         String horarioSolicitado = solicitacaoDTO.getHorarioSolicitado();
         String observacao = solicitacaoDTO.getObservacao();
         String latitude = solicitacaoDTO.getLatitude();
         String longitude = solicitacaoDTO.getLongitude();
         String endereco = solicitacaoDTO.getEndereco();
 
-        // TO DO - Mapear usuarios por cordenadas
-        List<Usuario> usuariosbyServico = usuarioRepository.findByServico(servico);
+        Usuario usuarioSolicitante = usuarioRepository.findById(usuarioSolicitanteId);
+        Servico servico = servicoRepository.findByNome(nomeServico);
+        LocalTime horarioSolicitadoTime = LocalTime.parse(horarioSolicitado);
+        LocalDateTime diaSolicitadoTime = LocalDateTime.parse(diaSolicitado);
 
-        Map<Usuario, Coordenadas> usuariosComCoordenadas = usuariosbyServico.stream()
-                .collect(Collectors.toMap(Function.identity(), Usuario::getCoordenadas));
-
+        Map<Usuario, Coordenadas> usuariosComCoordenadas = getUsuariosComCordenadasByServico(nomeServico);
         Coordenadas cordenadaRef = new Coordenadas(latitude, longitude);
         Usuario usuarioProximo = getUsuarioMaisProximo(cordenadaRef, usuariosComCoordenadas);
 
@@ -42,6 +53,15 @@ public class SolicitacaoService {
         System.out.printf("O usuário mais próximo é %s, com latitude %f e longitude %f.%n",
                 usuarioProximo, coordenadasProximo.getLatitude(), coordenadasProximo.getLongitude());
 
+        // TO DO Ajustar vinda de mes, dia e horas para criar o periodo da solicitação
+        ServicoSolicitado servicoSolicitado = new ServicoSolicitado(usuarioSolicitante, usuarioProximo, servico, diaSolicitadoTime, horarioSolicitadoTime, observacao, latitude, longitude, endereco);
+        servicoSolicitadoRepository.save(servicoSolicitado);
+    }
+
+    private Map<Usuario, Coordenadas> getUsuariosComCordenadasByServico(String servico) {
+        List<Usuario> usuariosbyServico = usuarioRepository.findByServico(servico);
+        return usuariosbyServico.stream()
+                .collect(Collectors.toMap(Function.identity(), Usuario::getCoordenadas));
     }
 
     private Usuario getUsuarioMaisProximo(Coordenadas cordenadaRef, Map<Usuario, Coordenadas> usuarios) {

@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ServicoRepository {
 
-    Optional<Servico> findByNome(String nomeCargo);
+    Servico findByNome(String nomeCargo);
 
     Optional<Servico> findByNomeAndCategoria(String nomeCargo, String categoria);
 
