@@ -1,9 +1,11 @@
 package com.backend_bico.bico.model.servico_solicitado;
 
+import com.backend_bico.bico.model.dtos.ServicoDoUsuarioDTO;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -19,7 +21,7 @@ public class ServicoSolicitadoRepositoryImpl implements ServicoSolicitadoReposit
     }
 
     @Override
-    public ServicoSolicitado findServicoSolicitadoByPrestador(UUID usuarioId) {
+    public List<ServicoSolicitado> findServicoSolicitadoByPrestador(UUID usuarioId) {
         return servicoSolicitadoRepositoryJpa.findServicoSolicitadoByPrestador(usuarioId);
     }
 

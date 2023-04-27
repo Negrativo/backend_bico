@@ -3,7 +3,6 @@ CREATE TABLE bico.tb_usuario (
 	nome varchar(100) NOT NULL,
 	email varchar(100) NOT NULL,
 	senha varchar(80) NOT NULL,
-	profissoes varchar(100) NULL,
     telefone varchar(100) NULL,
     latitude varchar(100) NULL,
     longitude varchar(100) NULL,

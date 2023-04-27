@@ -1,27 +1,32 @@
 package com.backend_bico.bico.controller;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.backend_bico.bico.model.dtos.ServicoDoUsuarioDTO;
 import com.backend_bico.bico.model.dtos.SolicitacaoDTO;
 import com.backend_bico.bico.service.SolicitacaoService;
-
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/solicitacao")
 @AllArgsConstructor
 public class SolicitacaoServicoController {
 
-  private SolicitacaoService solicitacaoService;
+    private SolicitacaoService solicitacaoService;
 
-  @PostMapping("/solicitar")
-  public ResponseEntity<String> solicitar(@RequestBody SolicitacaoDTO solicitacaoDTO) {
-    solicitacaoService.solicitar(solicitacaoDTO);
-    return ResponseEntity.ok("Solicitado");
-  }
+    @PostMapping("/solicitar")
+    public ResponseEntity<String> solicitar(@RequestBody SolicitacaoDTO solicitacaoDTO) {
+        solicitacaoService.solicitar(solicitacaoDTO);
+        return ResponseEntity.ok("Solicitado");
+    }
+
+    @GetMapping("/{usuarioId}")
+    public ResponseEntity<List<ServicoDoUsuarioDTO>> getSolicitacoesByUsuario(@PathVariable UUID usuarioId) {
+        List<ServicoDoUsuarioDTO> servidoDoUsuario = solicitacaoService.getServidosDoUsuarioPrestador(usuarioId);
+        return ResponseEntity.ok(servidoDoUsuario);
+    }
 
 }
