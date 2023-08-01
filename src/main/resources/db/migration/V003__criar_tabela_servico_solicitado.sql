@@ -1,4 +1,4 @@
-CREATE TABLE bico.tb_servico_solicitado (
+CREATE TABLE tb_servico_solicitado (
      id uuid NOT NULL,
      usuario_solicitando_id uuid NOT NULL REFERENCES tb_usuario(id),
      usuario_prestador_id uuid REFERENCES tb_usuario(id),

@@ -1,4 +1,4 @@
-CREATE TABLE bico.tb_usuario (
+CREATE TABLE tb_usuario (
 	id uuid NOT NULL,
 	nome varchar(100) NOT NULL,
 	email varchar(100) NOT NULL,
@@ -11,14 +11,14 @@ CREATE TABLE bico.tb_usuario (
     CONSTRAINT tb_usuario_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE bico.tb_servico (
+CREATE TABLE tb_servico (
 	id uuid NOT NULL,
     nome varchar(50) NOT NULL,
 	categoria varchar(50) NOT NULL,
 	CONSTRAINT tb_servico_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE bico.tb_usuario_servicos (
+CREATE TABLE tb_usuario_servicos (
     id uuid PRIMARY KEY,
     usuario_id uuid REFERENCES tb_usuario(id),
     servico_id uuid REFERENCES tb_servico(id),

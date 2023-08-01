@@ -1,4 +1,4 @@
-    INSERT INTO bico.tb_servico (id, nome, categoria) VALUES
+    INSERT INTO tb_servico (id, nome, categoria) VALUES
     ('1f57ba94-9563-4678-a4b8-343736989273',      'Acessibilidade', 'Reformas e Reparos'),
     ('23b763c4-7984-4dd8-b176-e170430cea2c',      'Afiação', 'Reformas e Reparos'),
     ('8f44fe1d-f1bb-40a6-b15c-44ec37debd38',      'Agrimensura', 'Reformas e Reparos'),
