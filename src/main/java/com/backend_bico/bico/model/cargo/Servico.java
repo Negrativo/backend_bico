@@ -16,7 +16,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor(force = true)
-@Table(name = "tb_servico", schema = "bico")
+@Table(name = "tb_servico")
 public class Servico {
 
     @Id
