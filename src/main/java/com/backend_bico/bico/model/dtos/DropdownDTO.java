@@ -1,6 +1,6 @@
 package com.backend_bico.bico.model.dtos;
 
-import com.backend_bico.bico.model.cargo.Servico;
+import com.backend_bico.bico.model.servico.Servico;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;

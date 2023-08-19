@@ -1,4 +1,4 @@
-package com.backend_bico.bico.model.cargo;
+package com.backend_bico.bico.model.servico;
 
 import com.backend_bico.bico.model.dtos.DropdownDTO;
 import jakarta.persistence.EntityNotFoundException;

@@ -1,6 +1,6 @@
 package com.backend_bico.bico.model.servico_solicitado;
 
-import com.backend_bico.bico.model.cargo.Servico;
+import com.backend_bico.bico.model.servico.Servico;
 import com.backend_bico.bico.model.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-@Table(name = "tb_servico_solicitado")
+@Table(name = "tb_servico_solicitado", schema = "bico")
 public class ServicoSolicitado {
 
     @Id

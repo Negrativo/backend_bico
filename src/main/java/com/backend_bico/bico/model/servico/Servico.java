@@ -1,4 +1,4 @@
-package com.backend_bico.bico.model.cargo;
+package com.backend_bico.bico.model.servico;
 
 import com.backend_bico.bico.model.usuario_servico.UsuarioServico;
 import jakarta.persistence.Entity;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor(force = true)
-@Table(name = "tb_servico")
+@Table(name = "tb_servico", schema = "bico")
 public class Servico {
 
     @Id

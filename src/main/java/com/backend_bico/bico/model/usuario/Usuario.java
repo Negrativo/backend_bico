@@ -2,7 +2,7 @@ package com.backend_bico.bico.model.usuario;
 
 import com.backend_bico.bico.exceptionHandler.InvalidPasswordException;
 import com.backend_bico.bico.model.Coordenadas;
-import com.backend_bico.bico.model.cargo.Servico;
+import com.backend_bico.bico.model.servico.Servico;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAlterarSenhaDTO;
 import com.backend_bico.bico.model.usuario.dto.UsuarioAtualizarDTO;
 import com.backend_bico.bico.model.usuario.dto.UsuarioCriarDTO;
@@ -17,9 +17,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import static com.backend_bico.bico.service.UsuarioService.AS_SENHAS_NAO_CONFEREM;
 
@@ -27,7 +25,7 @@ import static com.backend_bico.bico.service.UsuarioService.AS_SENHAS_NAO_CONFERE
 @Getter
 @Setter
 @NoArgsConstructor(force = true)
-@Table(name = "tb_usuario")
+@Table(name = "tb_usuario", schema = "bico")
 public class Usuario {
 
     @Id

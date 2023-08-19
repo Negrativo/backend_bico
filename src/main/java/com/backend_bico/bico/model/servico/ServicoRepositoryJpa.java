@@ -1,4 +1,4 @@
-package com.backend_bico.bico.model.cargo;
+package com.backend_bico.bico.model.servico;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

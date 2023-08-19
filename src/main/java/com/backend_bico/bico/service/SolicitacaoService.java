@@ -1,8 +1,8 @@
 package com.backend_bico.bico.service;
 
 import com.backend_bico.bico.model.Coordenadas;
-import com.backend_bico.bico.model.cargo.Servico;
-import com.backend_bico.bico.model.cargo.ServicoRepository;
+import com.backend_bico.bico.model.servico.Servico;
+import com.backend_bico.bico.model.servico.ServicoRepository;
 import com.backend_bico.bico.model.dtos.ServicoDoUsuarioDTO;
 import com.backend_bico.bico.model.dtos.SolicitacaoDTO;
 import com.backend_bico.bico.model.servico_solicitado.ServicoSolicitado;

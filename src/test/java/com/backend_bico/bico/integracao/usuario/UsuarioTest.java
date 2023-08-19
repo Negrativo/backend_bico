@@ -1,8 +1,8 @@
 package com.backend_bico.bico.integracao.usuario;
 
 import com.backend_bico.bico.BicoApplicationTests;
-import com.backend_bico.bico.model.cargo.Servico;
-import com.backend_bico.bico.model.cargo.ServicoRepository;
+import com.backend_bico.bico.model.servico.Servico;
+import com.backend_bico.bico.model.servico.ServicoRepository;
 import com.backend_bico.bico.model.usuario.Usuario;
 import com.backend_bico.bico.model.usuario.UsuarioRepository;
 import com.backend_bico.bico.model.usuario.dto.UsuarioCriarDTO;
