@@ -25,7 +25,7 @@ import static com.backend_bico.bico.service.UsuarioService.AS_SENHAS_NAO_CONFERE
 @Getter
 @Setter
 @NoArgsConstructor(force = true)
-@Table(name = "tb_usuario", schema = "bico")
+@Table(name = "tb_usuario", schema = "public")
 public class Usuario {
 
     @Id

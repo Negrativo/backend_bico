@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor(force = true)
-@Table(name = "tb_servico_solicitado", schema = "bico")
+@Table(name = "tb_servico_solicitado", schema = "public")
 public class ServicoSolicitado {
 
     @Id
